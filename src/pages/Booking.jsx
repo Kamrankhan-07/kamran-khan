@@ -28,17 +28,18 @@ function Booking() {
       return;
     }
 
-    const { error } = await supabase
-      .from("bookings")
-      .insert([
-        {
-          name: formData.name,
-          email: formData.email,
-          match: formData.match,
-          tickets: Number(formData.tickets),
-          category: formData.category,
-        },
-      ]);
+   const { error } = await supabase
+  .from("Bookings")
+  .insert([
+    {
+      "user name": formData.name,
+      email: formData.email,
+      "match id": formData.match,
+      seats: String(formData.tickets),
+      category: formData.category,
+    },
+  ]);
+      
 
     if (error) {
       console.error("Booking error:", error);

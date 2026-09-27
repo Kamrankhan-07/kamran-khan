@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import { supabase } from './supabase';
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -10,6 +13,18 @@ import BookingHistory from "./pages/BookingHistory";
 import "./App.css";
 
 function App() {
+  const [matches, setMatches] = useState([]);
+
+  useEffect(() => {
+    fetchMatches();
+  }, []);
+
+  async function fetchMatches() {
+    const { data, error } = await supabase.from('matches').select('*');
+    if (error) console.log('Error fetching matches:', error);
+    else setMatches(data || []);
+  }
+
   return (
     <BrowserRouter>
 
@@ -17,9 +32,9 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/matches" element={<Matches />} />
+        <Route path="/matches" element={<Matches matches={matches} />} />
         <Route path="/booking" element={<Booking />} />
-        <Route path="/history" element={<BookingHistory />} />
+        <Route path="/booking-history" element={<BookingHistory />} />
       </Routes>
 
     </BrowserRouter>

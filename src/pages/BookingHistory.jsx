@@ -11,7 +11,7 @@ function BookingHistory() {
 
   const fetchBookings = async () => {
     const { data, error } = await supabase
-      .from("bookings")
+      .from("Bookings")
       .select("*")
       .order("created_at", { ascending: false });
 

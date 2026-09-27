@@ -1,28 +1,8 @@
 
 import { Link } from "react-router-dom";
 
-function Matches() {
-  const matches = [
-    {
-      teams: "CSK vs RCB",
-      date: "April 5, 2026",
-      time: "7:30 PM",
-      stadium: "MA Chidambaram Stadium",
-    },
-    {
-      teams: "MI vs KKR",
-      date: "April 6, 2026",
-      time: "7:30 PM",
-      stadium: "Wankhede Stadium",
-    },
-    {
-      teams: "SRH vs DC",
-      date: "April 7, 2026",
-      time: "7:30 PM",
-      stadium: "Rajiv Gandhi International Stadium",
-    },
-  ];
-
+function Matches(matches) {
+ 
   return (
     <div className="matches-page">
       <div className="matches-section">
@@ -40,12 +20,12 @@ function Matches() {
                 <span>🏏</span>
               </div>
 
-              <h3>{match.teams}</h3>
+              <h3>{match['team 1']} vs {match['team 2']}</h3>
 
               <div className="match-info">
-                <p>📅 {match.date}</p>
-                <p>⏰ {match.time}</p>
-                <p>📍 {match.stadium}</p>
+               <p>{match.date}</p>
+               <p>{match.time}</p>
+               <p>{match.venue}</p>
               </div>
 
               <Link to="/booking" className="book-button">
